@@ -11,14 +11,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{asset ('js/jquery.dataTables.min.js') }}"></script>
+   <script src="{{asset ('js/dataTables.bootstrap.min.js') }}"></script>
+@yield('scripts')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -35,9 +39,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     @if (Auth::check())
-<li><a href="{{ url('/home') }}">Dashboard</a></li>
+<li><a href="{{ url('/home') }}">Dashboard</a></li>&nbsp
+
 @endif
-                    </ul>
+@role('admin')
+<li><a href="{{ route('author.index') }}">Penulis</a></li>
+@endrole
+</ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
